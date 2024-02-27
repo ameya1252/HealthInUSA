@@ -3,47 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Health in the USA</title>
+    <title>US Heart and Stroke Data Visualization</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Health in the USA</h1>
-        <p>Project by Ameya Deshmukh</p>
+        <h1>US Heart and Stroke Data Visualization</h1>
+        <p>Created by Ameya Deshmukh</p>
         <p>Data source: US Heart and Stroke Atlas</p>
-        <p>Libraries used: D3.js</p>
+        <p>Libraries used: D3.js, HTML, CSS</p>
     </header>
-    <main>
-        <section id="attribute-selection" aria-label="Attribute Selection">
-            <div class="selection-group">
-                <label for="attribute1">Select Attribute 1:</label>
+
+    <div class="visualization-section">
+        <div id="attribute-selection">
+            <h2>Select Attributes</h2>
+            <div class="attribute-select">
+                <label for="attribute1">Choose Attribute 1:</label>
                 <select id="attribute1">
-                    <!-- Options will be populated dynamically -->
+                    <!-- Options for attribute selection -->
                 </select>
             </div>
-            <div class="selection-group">
-                <label for="attribute2">Select Attribute 2:</label>
+            <div class="attribute-select">
+                <label for="attribute2">Choose Attribute 2:</label>
                 <select id="attribute2">
-                    <!-- Options will be populated dynamically -->
+                    <!-- Options for attribute selection -->
                 </select>
             </div>
-        </section>
-        <section id="visualizations" aria-label="Visualizations">
-            <div id="histogram-container" class="visualization-container">
-                <!-- Histograms will be appended here -->
+            <p class="instructions">Select two attributes from the dropdown menus to update the visualizations.</p>
+        </div>
+
+        <div id="distribution-comparison">
+            <h2>Distribution Comparison</h2>
+            <svg id="distribution-chart" width="1000" height="600"></svg>
+        </div>
+    </div>
+
+    <div class="visualization-section">
+        <div id="correlation-analysis">
+            <h2>Correlation Analysis</h2>
+            <svg id="scatterplot" width="1000" height="600"></svg>
+        </div>
+
+        <div id="spatial-distribution">
+            <h2>Spatial Distribution</h2>
+            <div id="map-container">
+                <div id="map1" class="map"></div>
+                <div id="map2" class="map"></div>
+                <div id="legend-container">
+                    <svg id="legend1" class="legend" width="200" height="200"></svg>
+                    <svg id="legend2" class="legend" width="200" height="200"></svg>
+                </div>
             </div>
-            <div id="scatterplot-container" class="visualization-container">
-                <!-- Scatterplot will be appended here -->
-            </div>
-            <div id="choropleth-container" class="visualization-container" style="display: flex; justify-content: space-around;">
-                <div id="map1"></div>
-                <div id="map2"></div>
-              </div>              
-        </section>
-        <section id="details-container" aria-label="Details">
-            <!-- Details will be shown here -->
-        </section>
-    </main>
+        </div>
+    </div>
     <footer>
         <p>© 2024 Project by Ameya Deshmukh. All rights reserved.</p>
     </footer>
