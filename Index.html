@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health in the USA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Health in the USA</h1>
+        <p>Project by Ameya Deshmukh</p>
+        <p>Data source: US Heart and Stroke Atlas</p>
+        <p>Libraries used: D3.js</p>
+    </header>
+    <main>
+        <section id="attribute-selection" aria-label="Attribute Selection">
+            <div class="selection-group">
+                <label for="attribute1">Select Attribute 1:</label>
+                <select id="attribute1">
+                    <!-- Options will be populated dynamically -->
+                </select>
+            </div>
+            <div class="selection-group">
+                <label for="attribute2">Select Attribute 2:</label>
+                <select id="attribute2">
+                    <!-- Options will be populated dynamically -->
+                </select>
+            </div>
+        </section>
+        <section id="visualizations" aria-label="Visualizations">
+            <div id="histogram-container" class="visualization-container">
+                <!-- Histograms will be appended here -->
+            </div>
+            <div id="scatterplot-container" class="visualization-container">
+                <!-- Scatterplot will be appended here -->
+            </div>
+            <div id="choropleth-container" class="visualization-container" style="display: flex; justify-content: space-around;">
+                <div id="map1"></div>
+                <div id="map2"></div>
+              </div>              
+        </section>
+        <section id="details-container" aria-label="Details">
+            <!-- Details will be shown here -->
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Project by Ameya Deshmukh. All rights reserved.</p>
+    </footer>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

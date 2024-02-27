@@ -1,0 +1,111 @@
+/* styles.css - Updated for enhanced visuals */
+
+:root {
+    /* Define your color scheme here */
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --background-color: #f8f9fa;
+    --text-color: #333;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+#attribute-selection {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#attribute-selection label, #attribute-selection select {
+    margin: 0 10px;
+}
+
+select {
+    padding: 5px 10px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+}
+
+/* Visualization containers */
+#histogram-container, #scatterplot-container, #choropleth-container {
+    width: 100%;
+    margin: 20px 0;
+}
+
+/* Enhancements for details container */
+#details-container {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    #attribute-selection {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    main {
+        padding: 10px;
+    }
+}
+
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header, main, footer {
+    width: 90%; /* Adjust based on your preference */
+    max-width: 1200px; /* Ensures content is not too stretched on larger screens */
+    text-align: center;
+}
+
+.selection-group {
+    margin: 20px 0;
+}
+
+.visualization-container {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+
