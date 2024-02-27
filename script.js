@@ -1,7 +1,7 @@
 // Load CSV file
 d3.csv("national_health_data.csv").then(function(data) {
     // Attribute options
-    var attributes = Object.keys(data[0]).filter(attr => !["fips", "county_name"].includes(attr));
+    var attributes = Object.keys(data[0]).filter(attr => attr !== "fips" && attr !== "county_name");
 
     // Populate attribute dropdowns
     var attributeDropdown1 = d3.select("#attribute1");
@@ -44,7 +44,7 @@ function updateDistributionChart(data, attribute1, attribute2) {
     // Check if both attributes are the same
     if (attribute1 === attribute2) {
         // If same, only display one histogram
-        updateSingleHistogram(data, attribute1);
+        updateSingleHistogram(data, attribute1, attribute2);
     } else {
         // If different, display two side-by-side histograms
         updateDualHistograms(data, attribute1, attribute2);
@@ -52,7 +52,7 @@ function updateDistributionChart(data, attribute1, attribute2) {
 }
 
 // Function to update a single histogram
-function updateSingleHistogram(data, attribute1) {
+function updateSingleHistogram(data, attribute1, attribute2) {
     // Clear previous chart
     d3.select("#distribution-chart").selectAll("*").remove();
 
@@ -115,7 +115,18 @@ function updateSingleHistogram(data, attribute1) {
         .attr("y", d => yScale(d.length))
         .attr("width", d => Math.abs(xScale(d.x1) - xScale(d.x0) - 1))
         .attr("height", d => height - margin.bottom - yScale(d.length))
-        .attr("fill", "steelblue");
+        .attr("fill", "steelblue")
+        .on("mouseover", function(event, d) {
+            // Show tooltip
+            tooltip.style("visibility", "visible")
+                .html("Bar Value: " + d.length + "<br>Bar Range: [" + d.x0 + ", " + d.x1 + "]")
+                .style("left", (event.pageX) + "px")
+                .style("top", (event.pageY - 28) + "px");
+        })
+        .on("mouseout", function() {
+            // Hide tooltip
+            tooltip.style("visibility", "hidden");
+        });
 
     // Create x-axis label
     svg.append("text")
@@ -131,6 +142,8 @@ function updateSingleHistogram(data, attribute1) {
         .attr("dy", "1em")
         .style("text-anchor", "middle")
         .text("Frequency");
+
+    console.log("Width calculation in single histogram");
 }
 
 // Function to update two side-by-side histograms
@@ -220,7 +233,18 @@ function updateDualHistograms(data, attribute1, attribute2) {
         .attr("y", d => yScale1(d.length))
         .attr("width", d => Math.abs(xScale1(d.x1) - xScale1(d.x0) - 1))
         .attr("height", d => height - margin.bottom - yScale1(d.length))
-        .attr("fill", "steelblue");
+        .attr("fill", "steelblue")
+        .on("mouseover", function(event, d) {
+            // Show tooltip
+            tooltip.style("visibility", "visible")
+                .html("Bar Value (Histogram 1): " + d.length + "<br>Bar Range (Histogram 1): [" + d.x0 + ", " + d.x1 + "]")
+                .style("left", (event.pageX) + "px")
+                .style("top", (event.pageY - 28) + "px");
+        })
+        .on("mouseout", function() {
+            // Hide tooltip
+            tooltip.style("visibility", "hidden");
+        });
 
     // Append bars for histogram 2
     svg.selectAll(".bar2")
@@ -231,7 +255,18 @@ function updateDualHistograms(data, attribute1, attribute2) {
         .attr("y", d => yScale2(d.length))
         .attr("width", d => Math.abs(xScale2(d.x1) - xScale2(d.x0) - 1))
         .attr("height", d => height - margin.bottom - yScale2(d.length))
-        .attr("fill", "steelblue");
+        .attr("fill", "steelblue")
+        .on("mouseover", function(event, d) {
+            // Show tooltip
+            tooltip.style("visibility", "visible")
+                .html("Bar Value (Histogram 2): " + d.length + "<br>Bar Range (Histogram 2): [" + d.x0 + ", " + d.x1 + "]")
+                .style("left", (event.pageX) + "px")
+                .style("top", (event.pageY - 28) + "px");
+        })
+        .on("mouseout", function() {
+            // Hide tooltip
+            tooltip.style("visibility", "hidden");
+        });
 
     // Create x-axis labels
     svg.append("text")
@@ -252,7 +287,10 @@ function updateDualHistograms(data, attribute1, attribute2) {
         .attr("dy", "1em")
         .style("text-anchor", "middle")
         .text("Frequency");
+
+    console.log("Width calculation in double histogram");
 }
+
 
 // Function to update scatterplot
 function updateScatterplot(data, attribute1, attribute2) {
@@ -294,7 +332,18 @@ function updateScatterplot(data, attribute1, attribute2) {
         .attr("cx", d => xScale(parseFloat(d[attribute1])))
         .attr("cy", d => yScale(parseFloat(d[attribute2])))
         .attr("r", 5)
-        .attr("fill", singleColor);
+        .attr("fill", singleColor)
+        .on("mouseover", function(event, d) {
+            // Show tooltip
+            tooltip.style("visibility", "visible")
+                .html("Attribute 1: " + d[attribute1] + "<br>Attribute 2: " + d[attribute2])
+                .style("left", (event.pageX) + "px")
+                .style("top", (event.pageY - 28) + "px");
+        })
+        .on("mouseout", function() {
+            // Hide tooltip
+            tooltip.style("visibility", "hidden");
+        });
 
     // Create x-axis
     var xAxis = d3.axisBottom(xScale);
@@ -349,6 +398,8 @@ function updateChoroplethMaps(data, attribute1, attribute2) {
 
     // Load TopoJSON data for US counties
     d3.json("counties-10m.json").then(function(usCounties) {
+        console.log("TopoJSON data loaded:", usCounties);
+
         // Draw the counties on the maps using TopoJSON data
         var path = d3.geoPath().projection(d3.geoAlbersUsa().translate([width / 2, height / 2]).scale(1000));
 
@@ -373,6 +424,17 @@ function updateChoroplethMaps(data, attribute1, attribute2) {
                     // Handle missing data
                     return "gray";
                 }
+            })
+            .on("mouseover", function(event, d) {
+                // Show tooltip
+                tooltip.style("visibility", "visible")
+                    .html("County: " + d.properties.name)
+                    .style("left", (event.pageX) + "px")
+                    .style("top", (event.pageY - 28) + "px");
+            })
+            .on("mouseout", function() {
+                // Hide tooltip
+                tooltip.style("visibility", "hidden");
             });
 
         svg2.selectAll("path")
@@ -388,6 +450,17 @@ function updateChoroplethMaps(data, attribute1, attribute2) {
                     // Handle missing data
                     return "gray";
                 }
+            })
+            .on("mouseover", function(event, d) {
+                // Show tooltip
+                tooltip.style("visibility", "visible")
+                    .html("County: " + d.properties.name)
+                    .style("left", (event.pageX) + "px")
+                    .style("top", (event.pageY - 28) + "px");
+            })
+            .on("mouseout", function() {
+                // Hide tooltip
+                tooltip.style("visibility", "hidden");
             });
 
         // Create legend for map 1
@@ -395,6 +468,8 @@ function updateChoroplethMaps(data, attribute1, attribute2) {
 
         // Create legend for map 2
         createLegend(svg2, colorScale2, width, height, attribute2);
+
+        console.log("SVG elements appended to maps.");
     }).catch(function(error) {
         console.log("Error loading TopoJSON data:", error);
     });
@@ -418,6 +493,56 @@ function createLegend(svg, colorScale, width, height, attribute) {
     legend.attr("transform", "translate(" + (width - legendWidth - 20) + "," + (height - legendHeight - 20) + ")");
 }
 
+
+
+
+/* Function to create legend
+function createLegend(svg, colorScale, width, height) {
+    var legend = svg.append("g")
+        .attr("class", "legend");
+
+    var legendRectSize = 18;
+    var legendSpacing = 4;
+
+    // Get the range values of the color scale
+    var rangeValues = colorScale.range();
+
+    // Calculate the step size for the legend items
+    var step = (colorScale.domain()[1] - colorScale.domain()[0]) / rangeValues.length;
+
+    var legendItems = legend.selectAll(".legend-item")
+        .data(rangeValues)
+        .enter()
+        .append("g")
+        .attr("class", "legend-item")
+        .attr("transform", function(d, i) {
+            var vertOffset = i * (legendRectSize + legendSpacing) + 10; // Adjust vertical offset
+            return "translate(0," + vertOffset + ")";
+        });
+
+    legendItems.append("rect")
+        .attr("width", legendRectSize)
+        .attr("height", legendRectSize)
+        .style("fill", function(d) { return d; }) // Use the color directly
+        .style("stroke", function(d) { return d; }); // Use the color directly
+
+    legendItems.append("text")
+        .attr("x", legendRectSize + legendSpacing)
+        .attr("y", legendRectSize - legendSpacing)
+        .text(function(d, i) { 
+            // Calculate the domain value for each legend item
+            var domainValue = (colorScale.domain()[0] + i * step).toFixed(2);
+            return domainValue; 
+        });
+
+    // Adjust positioning based on legend height
+    var legendHeight = rangeValues.length * (legendRectSize + legendSpacing) + 20; // Extra padding
+    var legendWidth = legend.node().getBoundingClientRect().width;
+    legend.attr("transform", "translate(" + (width - legendWidth - 20) + "," + (height - legendHeight) + ")");
+}
+*/
+
+
 // Create tooltip
 var tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
@@ -426,18 +551,5 @@ var tooltip = d3.select("body").append("div")
     .style("visibility", "hidden")
     .style("background", "#fff")
     .style("padding", "5px")
-    .style("border", "1px solid #000")
-    .text("");
-
-// Add mouseover and mouseout events to the scatterplot circles
-d3.select("#scatterplot").selectAll("circle")
-    .on("mouseover", function(d) {
-        tooltip.text(d.county_name + ": " + d[attribute1] + ", " + d[attribute2]);
-        tooltip.style("visibility", "visible");
-    })
-    .on("mousemove", function() {
-        tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
-    })
-    .on("mouseout", function() {
-        tooltip.style("visibility", "hidden");
-    });
+    .style("border", "1px solid #ccc")
+    .style("border-radius", "5px");
