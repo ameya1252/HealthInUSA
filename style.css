@@ -1,111 +1,111 @@
-/* styles.css - Updated for enhanced visuals */
+/*Author: Ameya Deshmukh
+/*Date: 2024-02-20
 
-:root {
-    /* Define your color scheme here */
-    --primary-color: #007bff;
-    --secondary-color: #6c757d;
-    --background-color: #f8f9fa;
-    --text-color: #333;
+/* CSS Reset */
+html, body, header, main, div, h1, h2, p, select, label, svg {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+
+/* Global Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    background-color: #000;
     margin: 0;
     padding: 0;
 }
 
-header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
+/* Rest of your existing CSS styles */
 
-header h1 {
-    margin: 0;
-    padding: 0;
-}
 
-main {
+.visualization-section {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-}
-
-#attribute-selection {
-    display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
-    width: 100%;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+.visualization-section > div {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
     margin-bottom: 20px;
 }
 
-#attribute-selection label, #attribute-selection select {
-    margin: 0 10px;
+.visualization-section h2 {
+    margin-bottom: 10px;
 }
 
-select {
-    padding: 5px 10px;
-    border: 1px solid var(--secondary-color);
-    border-radius: 5px;
-}
-
-/* Visualization containers */
-#histogram-container, #scatterplot-container, #choropleth-container {
-    width: 100%;
-    margin: 20px 0;
-}
-
-/* Enhancements for details container */
-#details-container {
-    background-color: white;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-/* Responsive design adjustments */
-@media (max-width: 768px) {
-    #attribute-selection {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    main {
-        padding: 10px;
-    }
-}
-
-
-body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-header, main, footer {
-    width: 90%; /* Adjust based on your preference */
-    max-width: 1200px; /* Ensures content is not too stretched on larger screens */
+#attribute-selection {
+    flex-basis: 100%;
     text-align: center;
 }
 
-.selection-group {
-    margin: 20px 0;
+.attribute-select {
+    margin-bottom: 10px;
 }
 
-.visualization-container {
-    margin: 20px 0;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+.instructions {
+    margin-top: 20px;
+    font-style: italic;
+    color: #666;
 }
 
+/* Spatial Distribution Maps */
+#spatial-distribution {
+    max-width: 1000px; /* Adjust max-width if needed */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
 
+.map {
+    width: 100%;
+    height: 600px; /* Adjust height of the maps */
+}
 
+/* Header Styles */
+.header-section {
+    background-color: #2c3e50; /* Set background color */
+    color: #fff; /* Set text color */
+    padding: 40px 20px; /* Add padding for spacing */
+    text-align: center;
+}
+
+.header-content {
+    max-width: 800px; /* Limit width for better readability */
+    margin: 0 auto; /* Center align */
+}
+
+.header-title {
+    font-size: 36px; /* Increase font size for title */
+    margin-bottom: 20px; /* Add bottom margin for spacing */
+}
+
+.developer-name {
+    font-weight: bold; /* Make developer name bold */
+}
+
+.data-source,
+.technologies {
+    font-style: italic; /* Make data source and technologies italic */
+}
+
+.header-info {
+    margin-bottom: 10px; /* Add bottom margin for spacing between paragraphs */
+}
+
+/* Radar Chart Styles */
+#radar-chart-section {
+    flex-basis: 100%; /* Ensure it takes full width or adjust as needed */
+    text-align: center; /* Center content, if desired */
+    padding: 20px;
+    margin-bottom: 20px; /* Consistent spacing */
+}
+
+.radarChart {
+    height: 600px; /* Example fixed height, adjust as needed */
+    margin: auto; /* Center the chart if it doesn't span full width */
+}
