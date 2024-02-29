@@ -1,3 +1,6 @@
+<!--Author: Ameya Deshmukh-->
+<!--Date: 2024-02-20-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,40 +10,44 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>US Heart and Stroke Atlas Visualization</h1>
-        <p>Created by Om Gaikwad</p>
-        <p>Data source: US Heart and Stroke Atlas</p>
-        <p>Libraries used: D3.js, HTML, CSS</p>
+    <header class="header-section">
+        <div class="header-content">
+            <h1 class="header-title">US Heart and Stroke Atlas Visualization</h1>
+            <p class="header-info">Developed by <span class="developer-name">Ameya Deshmukh</span></p>
+            <p class="header-info">Data sourced from the <span class="data-source">US Heart and Stroke Atlas</span></p>
+            <p class="header-info">Technologies used: <span class="technologies">D3.js, HTML, CSS</span></p>
+        </div>
     </header>
-
+    
     <div class="visualization-section">
         <div id="attribute-selection">
             <h2>Select Attributes</h2>
+            <svg id="attribute-selection" width="1200" height="30"></svg>
             <div class="attribute-select">
-                <label for="attribute1">Select Attribute 1:</label>
+                <label for="attribute1">Choose Attribute 1:</label>
                 <select id="attribute1">
                     <!-- Options for attribute selection -->
                 </select>
             </div>
             <div class="attribute-select">
-                <label for="attribute2">Select Attribute 2:</label>
+                <label for="attribute2">Choose Attribute 2:</label>
                 <select id="attribute2">
                     <!-- Options for attribute selection -->
                 </select>
             </div>
-            <p class="instructions">Choose two attributes from the dropdown menus to update the visualizations.</p>
+            <p class="instructions">Select two attributes from the dropdown menus to update the visualizations.</p>
         </div>
 
         <div id="distribution-comparison">
             <h2>Distribution Comparison</h2>
-            <svg id="distribution-chart" width="1000" height="600"></svg>
+            <svg id="distribution-chart" width="1200" height="800"></svg>
         </div>
     </div>
 
     <div class="visualization-section">
         <div id="correlation-analysis">
             <h2>Correlation Analysis</h2>
+            <svg id="correlation-analysis" width="1200" height="30"></svg>
             <svg id="scatterplot" width="1000" height="600"></svg>
         </div>
 
@@ -57,6 +64,13 @@
         </div>
     </div>
 
+    <div class="visualization-section">
+        <div id="radar-chart-section">
+            <h2>Health and Environment Impact Analysis</h2>
+            <div id="radarChart" class="radarChart"></div> <!-- Target container for radar chart -->
+        </div>
+    </div>
+    
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://d3js.org/topojson.v3.min.js"></script>
     <script src="script.js"></script>
