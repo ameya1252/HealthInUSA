@@ -8,7 +8,7 @@ The "US Heart and Stroke Atlas Visualization" project is motivated by the necess
 
 This project utilizes data from the **US Heart and Stroke Atlas**, which compiles county-level statistics on heart disease, stroke incidence, and related health and environmental factors. Metrics include median household income, education levels, air quality, access to parks, and prevalence rates of high blood pressure, smoking, and physical inactivity, among others. This comprehensive dataset allows for a multifaceted analysis of the factors influencing heart health across different communities.
 
-**Data Source:** [US Heart and Stroke Atlas](https://www.cdc.gov/dhdsp/maps/atlas/index.htm) *(This link is illustrative)*
+**Data Source:** [US Heart and Stroke Atlas](https://www.cdc.gov/dhdsp/maps/atlas/index.htm)
 
 ## Visualization Components
 
@@ -29,7 +29,7 @@ Users can uncover insights such as the impact of air quality on heart disease ra
 
 Built using **D3.js** for data-driven visualizations, along with **HTML** and **CSS** for the web interface. The code structure follows modular design principles for enhanced maintainability.
 
-**Code Repository:** [GitHub link to project](#) *(This link is illustrative)*
+**Code Repository:** [GitHub link to project](https://github.com/ameya1252/HealthInUSA)
 
 The application can be run locally and accessed via a web browser.
 
@@ -43,7 +43,7 @@ Challenges included managing the asynchronous loading of large datasets and opti
 
 ## Demo Video
 
-A demo video showcasing the application in action: [Demo Video Link](#) *(This link is illustrative)*
+A demo video showcasing the application in action: [Demo Video Link](#)
 
 This video provides a guided tour of the project components, illustrating how users can interact with the application to derive meaningful insights from the data.
 
